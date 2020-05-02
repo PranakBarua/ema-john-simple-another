@@ -5,7 +5,7 @@ const Cart = (props) => {
     //const total=cart.reduce((total,prd)=>total+prd.price,0);
     let total=0;
     for(let i=0;i<cart.length;i++){
-        total=total+cart[i].price;
+        total=total+cart[i].price*cart[i].quantity;
     }
     let shippingCost=0;
     if(total>35){
@@ -27,9 +27,13 @@ const Cart = (props) => {
             <h4>Order summary</h4>
             <p>Items ordered : {cart.length}</p>
             <p>Product price : {formatNumber(total)}</p>
-            <p>shippingCost : {shippingCost}</p>
+            <p>ShippingCost : {shippingCost}</p>
             <p><small>Tax+VAT : {formatNumber(tax)}</small></p>
             <p>Total : {formatNumber(total+shippingCost+tax)}</p>
+            <br/>
+            {
+                props.children
+            }
         </div>
     );
 };
